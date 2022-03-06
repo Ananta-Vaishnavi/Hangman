@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+char word[70]="hello world hk";
+char letter;
+void dashes();
+char blank[70];
+void search();
+void dashes()
+{
+  	
+  int j=0;
+  for (int i=0;i<strlen(word);i++)
+  {
+  if (word[i]==' '||i==0)
+  {
+  	int c=0;
+   printf("\n\n\n");
+  for(j=i;word[j]!=' ';j++)
+  c++;
+ }  
+  if(word[i]!=' ')
+  printf(" %c ",blank[i]);
+          
+}               
+}
+void search()
+{
+	printf("\n\n\n==>Make your guess\n");
+	scanf("%c",&letter);
+	for (int i=0;i<strlen(word);i++)
+	{
+		if(word[i]==letter)
+		printf("yes");
+		
+	}
+}
+int main()
+{
+	  for(int i=0;i<strlen(word);i++)
+  {
+  	blank[i]='_';
+  }
+   dashes();
+   search();
+   
+}
