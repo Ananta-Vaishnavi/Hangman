@@ -1,21 +1,26 @@
 #include <stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #include<ctype.h>
-char word[70]="hello world hk";
-char letter;
 void dashes();
-char blank[70];
 void search();
+void hangman();
+void checkforwin();
+void move();
+char blank[70],letter;
+int guess=0,a,count,h;
+char word[70]="Command";
 void dashes()
 {
   	
   int j=0;
   for (int i=0;i<strlen(word);i++)
   {
+
   if (word[i]==' '||i==0)
   {
-  	int c=0;
-   printf("\n\n\n");
+   int c=0;
+   printf("\n\n\n--> ");
   for(j=i;word[j]!=' ';j++)
   c++;
  }  
@@ -26,22 +31,175 @@ void dashes()
 }
 void search()
 {
+
 	printf("\n\n\n==>Make your guess\n");
 	scanf("%c",&letter);
 	for (int i=0;i<strlen(word);i++)
 	{
 		if(word[i]==letter)
-		printf("yes");
-		
+		{
+		blank[i]=letter;
+		}
+	   
 	}
+   	
+}
+void move()
+{
+	int b=0;
+	for (int i=0;i<strlen(word);i++)
+	{
+		if(word[i]==letter)
+		{
+		b++;
+		}
+	}
+	if(b==0)
+	guess++;
+}
+void hangman()
+{
+	printf("\n\n");
+	if(guess==0)
+	{
+	
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|  \n");
+	printf("|  \n");
+	printf("|  \n");
+	printf("|  \n");
+	printf("|  \n");
+	printf("|__________\n");
+}
+	else if (guess==1)
+	{
+	
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|__________\n");
+}
+	else if (guess==2)
+	{
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|     |\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|__________\n");
+    }
+	else if (guess==3)
+	{
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|    \\|\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|__________\n");
+}
+	else if (guess==4)
+	{
+	
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|    \\|/\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|__________\n");
+    }
+	else if (guess==5)
+	{
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|    \\|/\n");
+	printf("|     |\n");
+	printf("|\n");
+	printf("|\n");
+	printf("|__________\n");
+    }
+	else if (guess==5)
+	{
+	
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|   \\|/\n");
+	printf("|     |\n");
+	printf("|     |\n");
+	printf("|\n");
+	printf("|__________\n");
+}
+	else if (guess==6)
+	{
+	
+	printf("___________\n");
+	printf("|     |\n");
+	printf("|     O\n");
+	printf("|    \\|/\n");
+	printf("|     |\n");
+	printf("|    /|\\\n");
+	printf("|\n");
+	printf("|__________\n");
+}
+}
+void checkforwin()
+{
+  a=0;
+  if(guess==6)
+  {
+   printf("Well tried, better luck next time");
+  }
+
+	  for(int i=0;i<strlen(word);i++)
+  {
+  	if((isalpha(blank[i])!=0)||(isdigit(blank[i])!=0))
+  	a++;
+		}
+		if(a==count&&guess!=6)
+		printf("You win!!!");
 }
 int main()
 {
-	  for(int i=0;i<strlen(word);i++)
+	for(int i=0;i<strlen(word);i++)
+  {
+  	if((isalpha(word[i])!=0)||(isdigit(word[i])!=0))
+  	count++;
+  	if(isdigit(word[i])!=0)
+  	printf("\n=>It contains numbers");
+		
+}	
+	for(int i=0;i<strlen(word);i++)
   {
   	blank[i]='_';
   }
-   dashes();
-   search();
-   
+  while(a!=count)
+  {
+  if (guess!=6)
+  {
+  dashes();
+  hangman();
+  search();
+  move();
+  system("cls");
+  printf("%d",guess);
+  checkforwin();
 }
+else
+break;
+}
+  
+  }
+
+
